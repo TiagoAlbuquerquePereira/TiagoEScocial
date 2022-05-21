@@ -1,22 +1,28 @@
 package com.Esocial.resources;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Esocial.entidades.Empresa;
+import com.Esocial.services.EmpresaService;
 
 @RestController
 @RequestMapping(value = "/empresas")
 public class EmpresaResource {
 
-	@GetMapping
-	public ResponseEntity<Empresa> findAll() {
+	@Autowired
+	private EmpresaService service;
 
-		Empresa a = new Empresa(1L, "emprol", "9999999999", "MEI", 1, "999999", "Consultoria", "Tiago",
-				"99999999999", "999999999");
-		return ResponseEntity.ok().body(a);
+	@GetMapping
+	public ResponseEntity<List<Empresa>> findAll() {
+
+		List<Empresa> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 
 	}
 
