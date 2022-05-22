@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Empresa implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -28,6 +30,11 @@ public class Empresa implements Serializable {
 	private String CPF_responsavel;
 	private String telefone_responsavel;
 
+	@JsonIgnore
+	@OneToMany
+	private List<Setor> lista = new ArrayList<>();
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "empresa")
 	private List<Funcionario> list = new ArrayList<>();
 
@@ -61,6 +68,28 @@ public class Empresa implements Serializable {
 		CPF_responsavel = cPF_responsavel;
 		this.telefone_responsavel = telefone_responsavel;
 		this.list = list;
+	}
+
+	public Empresa(Long iD, String nome, String cNPJ, String tipo_empresa, int grau_de_risco, String cNAE,
+			String descricao, String nome_responsavel, String cPF_responsavel, String telefone_responsavel,
+			List<Setor> lista, List<Funcionario> list) {
+		super();
+		ID = iD;
+		this.nome = nome;
+		CNPJ = cNPJ;
+		this.tipo_empresa = tipo_empresa;
+		this.grau_de_risco = grau_de_risco;
+		CNAE = cNAE;
+		this.descricao = descricao;
+		this.nome_responsavel = nome_responsavel;
+		CPF_responsavel = cPF_responsavel;
+		this.telefone_responsavel = telefone_responsavel;
+		this.lista = lista;
+		this.list = list;
+	}
+
+	public List<Setor> getLista() {
+		return lista;
 	}
 
 	public List<Funcionario> getList() {

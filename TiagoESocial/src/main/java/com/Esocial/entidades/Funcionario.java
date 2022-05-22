@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Funcionario implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -27,14 +29,17 @@ public class Funcionario implements Serializable {
 	private Date data_nascimento;
 	private String CLT;
 
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "Funcao_id")
 	private Funcao funcao;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "Empresa_id")
 	private Empresa empresa;
 
+	@JsonIgnore
 	@OneToMany
 	@JoinColumn(name = "Epi_id")
 	private List<Epi> list = new ArrayList<>();

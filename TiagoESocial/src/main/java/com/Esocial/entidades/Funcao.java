@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Funcao {
 
@@ -18,6 +20,7 @@ public class Funcao {
 	private String nome;
 	private String CBO;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "Setor_id")
 	private Setor setor;
