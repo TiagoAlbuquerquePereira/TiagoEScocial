@@ -1,6 +1,7 @@
 package com.Esocial.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,10 @@ public class EmpresaService {
 
 	public List<Empresa> findAll() {
 		return repository.findAll();
+	}
 
+	public Empresa findById (Long id) {
+		Optional<Empresa> obj = repository.findById(id);
+		return obj.get();
 	}
 }

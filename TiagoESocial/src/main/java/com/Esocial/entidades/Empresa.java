@@ -1,19 +1,22 @@
 package com.Esocial.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Empresa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long ID;
 	private String nome;
 	private String CNPJ;
@@ -25,8 +28,8 @@ public class Empresa implements Serializable {
 	private String CPF_responsavel;
 	private String telefone_responsavel;
 
-	public Empresa() {
-	}
+	@OneToMany (mappedBy = "empresa")
+	private List<Funcionario> list = new ArrayList<>();
 
 	public Empresa(Long iD, String nome, String cNPJ, String tipo_empresa, int grau_de_risco, String cNAE,
 			String descricao, String nome_responsavel, String cPF_responsavel, String telefone_responsavel) {
@@ -42,8 +45,27 @@ public class Empresa implements Serializable {
 		CPF_responsavel = cPF_responsavel;
 		this.telefone_responsavel = telefone_responsavel;
 	}
-	
-	
+
+	public Empresa(Long iD, String nome, String cNPJ, String tipo_empresa, int grau_de_risco, String cNAE,
+			String descricao, String nome_responsavel, String cPF_responsavel, String telefone_responsavel,
+			List<Funcionario> list) {
+		super();
+		ID = iD;
+		this.nome = nome;
+		CNPJ = cNPJ;
+		this.tipo_empresa = tipo_empresa;
+		this.grau_de_risco = grau_de_risco;
+		CNAE = cNAE;
+		this.descricao = descricao;
+		this.nome_responsavel = nome_responsavel;
+		CPF_responsavel = cPF_responsavel;
+		this.telefone_responsavel = telefone_responsavel;
+		this.list = list;
+	}
+
+	public List<Funcionario> getList() {
+		return list;
+	}
 
 	public Long getID() {
 		return ID;
