@@ -1,6 +1,5 @@
 package com.Esocial.entidades;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -9,23 +8,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Epi implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class ResponsavelTecnico {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nome;
-	private int CA;
+	private String CPF;
+	private String registro_conselho;
 
-	public Epi() {
+	public ResponsavelTecnico() {
 	}
 
-	public Epi(Long id, String nome, int cA) {
+	public ResponsavelTecnico(Long id, String nome, String cPF, String registro_conselho) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		CA = cA;
+		CPF = cPF;
+		this.registro_conselho = registro_conselho;
 	}
 
 	public Long getId() {
@@ -44,12 +44,20 @@ public class Epi implements Serializable {
 		this.nome = nome;
 	}
 
-	public int getCA() {
-		return CA;
+	public String getCPF() {
+		return CPF;
 	}
 
-	public void setCA(int cA) {
-		CA = cA;
+	public void setCPF(String cPF) {
+		CPF = cPF;
+	}
+
+	public String getRegistro_conselho() {
+		return registro_conselho;
+	}
+
+	public void setRegistro_conselho(String registro_conselho) {
+		this.registro_conselho = registro_conselho;
 	}
 
 	@Override
@@ -65,7 +73,7 @@ public class Epi implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Epi other = (Epi) obj;
+		ResponsavelTecnico other = (ResponsavelTecnico) obj;
 		return Objects.equals(id, other.id);
 	}
 

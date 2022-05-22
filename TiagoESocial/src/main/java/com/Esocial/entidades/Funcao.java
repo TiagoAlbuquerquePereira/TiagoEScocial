@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Funcao {
@@ -16,6 +18,10 @@ public class Funcao {
 	private String nome;
 	private String CBO;
 
+	@ManyToOne
+	@JoinColumn(name = "Setor_id")
+	private Setor setor;
+
 	public Funcao() {
 	}
 
@@ -24,6 +30,22 @@ public class Funcao {
 		ID = iD;
 		this.nome = nome;
 		CBO = cBO;
+	}
+
+	public Funcao(Long iD, String nome, String cBO, Setor setor) {
+		super();
+		ID = iD;
+		this.nome = nome;
+		CBO = cBO;
+		this.setor = setor;
+	}
+
+	public Setor getSetor() {
+		return setor;
+	}
+
+	public void setSetor(Setor setor) {
+		this.setor = setor;
 	}
 
 	public Long getID() {

@@ -1,7 +1,9 @@
 package com.Esocial.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -23,7 +26,7 @@ public class Funcionario implements Serializable {
 	private String CPF;
 	private Date data_nascimento;
 	private String CLT;
-	
+
 	@OneToOne
 	@JoinColumn(name = "Funcao_id")
 	private Funcao funcao;
@@ -31,6 +34,10 @@ public class Funcionario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "Empresa_id")
 	private Empresa empresa;
+
+	@OneToMany
+	@JoinColumn(name = "Epi_id")
+	private List<Epi> list = new ArrayList<>();
 
 	public Funcionario() {
 	}
@@ -46,6 +53,23 @@ public class Funcionario implements Serializable {
 		this.empresa = empresa;
 		this.funcao = funcao;
 		CLT = cLT;
+	}
+
+	public Funcionario(Long iD, String nome, String cPF, Date data_nascimento, String cLT, Funcao funcao,
+			Empresa empresa, List<Epi> list) {
+		super();
+		ID = iD;
+		this.nome = nome;
+		CPF = cPF;
+		this.data_nascimento = data_nascimento;
+		CLT = cLT;
+		this.funcao = funcao;
+		this.empresa = empresa;
+		this.list = list;
+	}
+
+	public List<Epi> getList() {
+		return list;
 	}
 
 	public Long getID() {
