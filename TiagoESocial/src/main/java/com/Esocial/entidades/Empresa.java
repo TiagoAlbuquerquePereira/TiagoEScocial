@@ -10,10 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "tb_Empresa")
 public class Empresa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,20 +29,20 @@ public class Empresa implements Serializable {
 	private int grau_de_risco;
 	private String CNAE;
 	private String descricao;
-	private String nome_responsavel;
-	private String CPF_responsavel;
-	private String telefone_responsavel;
+
+	@JsonIgnore
+	@OneToOne
+	private ResponsavelLegal responsavel;
 
 	@JsonIgnore
 	@OneToMany
 	private List<Setor> lista = new ArrayList<>();
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "empresa")
-	private List<Funcionario> list = new ArrayList<>();
+	public Empresa() {
+	}
 
 	public Empresa(Long iD, String nome, String cNPJ, String tipo_empresa, int grau_de_risco, String cNAE,
-			String descricao, String nome_responsavel, String cPF_responsavel, String telefone_responsavel) {
+			String descricao) {
 		super();
 		ID = iD;
 		this.nome = nome;
@@ -48,14 +51,10 @@ public class Empresa implements Serializable {
 		this.grau_de_risco = grau_de_risco;
 		CNAE = cNAE;
 		this.descricao = descricao;
-		this.nome_responsavel = nome_responsavel;
-		CPF_responsavel = cPF_responsavel;
-		this.telefone_responsavel = telefone_responsavel;
 	}
 
 	public Empresa(Long iD, String nome, String cNPJ, String tipo_empresa, int grau_de_risco, String cNAE,
-			String descricao, String nome_responsavel, String cPF_responsavel, String telefone_responsavel,
-			List<Funcionario> list) {
+			String descricao, ResponsavelLegal responsavel) {
 		super();
 		ID = iD;
 		this.nome = nome;
@@ -64,36 +63,7 @@ public class Empresa implements Serializable {
 		this.grau_de_risco = grau_de_risco;
 		CNAE = cNAE;
 		this.descricao = descricao;
-		this.nome_responsavel = nome_responsavel;
-		CPF_responsavel = cPF_responsavel;
-		this.telefone_responsavel = telefone_responsavel;
-		this.list = list;
-	}
-
-	public Empresa(Long iD, String nome, String cNPJ, String tipo_empresa, int grau_de_risco, String cNAE,
-			String descricao, String nome_responsavel, String cPF_responsavel, String telefone_responsavel,
-			List<Setor> lista, List<Funcionario> list) {
-		super();
-		ID = iD;
-		this.nome = nome;
-		CNPJ = cNPJ;
-		this.tipo_empresa = tipo_empresa;
-		this.grau_de_risco = grau_de_risco;
-		CNAE = cNAE;
-		this.descricao = descricao;
-		this.nome_responsavel = nome_responsavel;
-		CPF_responsavel = cPF_responsavel;
-		this.telefone_responsavel = telefone_responsavel;
-		this.lista = lista;
-		this.list = list;
-	}
-
-	public List<Setor> getLista() {
-		return lista;
-	}
-
-	public List<Funcionario> getList() {
-		return list;
+		this.responsavel = responsavel;
 	}
 
 	public Long getID() {
@@ -152,28 +122,16 @@ public class Empresa implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public String getNome_responsavel() {
-		return nome_responsavel;
+	public ResponsavelLegal getResponsavel() {
+		return responsavel;
 	}
 
-	public void setNome_responsavel(String nome_responsavel) {
-		this.nome_responsavel = nome_responsavel;
+	public void setResponsavel(ResponsavelLegal responsavel) {
+		this.responsavel = responsavel;
 	}
 
-	public String getCPF_responsavel() {
-		return CPF_responsavel;
-	}
-
-	public void setCPF_responsavel(String cPF_responsavel) {
-		CPF_responsavel = cPF_responsavel;
-	}
-
-	public String getTelefone_responsavel() {
-		return telefone_responsavel;
-	}
-
-	public void setTelefone_responsavel(String telefone_responsavel) {
-		this.telefone_responsavel = telefone_responsavel;
+	public List<Setor> getLista() {
+		return lista;
 	}
 
 	@Override

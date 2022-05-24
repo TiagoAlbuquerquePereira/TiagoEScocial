@@ -9,10 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "tb_Exame")
 public class Exame implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,17 +28,27 @@ public class Exame implements Serializable {
 	private ResponsavelTecnico medico;
 	private Date data;
 	private String aptidao;
+	private String tipo;
 
 	public Exame() {
 	}
 
-	public Exame(Long id, String nome, ResponsavelTecnico medico, Date data, String aptidao) {
+	public Exame(Long id, String nome, ResponsavelTecnico medico, Date data, String aptidao, String tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.medico = medico;
 		this.data = data;
 		this.aptidao = aptidao;
+		this.tipo = tipo;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public Long getId() {

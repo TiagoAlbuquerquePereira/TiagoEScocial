@@ -6,35 +6,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_ResponsavelTecnico")
-public class ResponsavelTecnico {
+public class MedicoResponsavel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Integer id;
 	private String nome;
-	private String CPF;
-	private String registro_conselho;
+	private int CRM;
 
-	public ResponsavelTecnico() {
+	public MedicoResponsavel() {
 	}
 
-	public ResponsavelTecnico(Long id, String nome, String cPF, String registro_conselho) {
+	public MedicoResponsavel(Integer id, String nome, int cRM) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		CPF = cPF;
-		this.registro_conselho = registro_conselho;
+		CRM = cRM;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -46,20 +42,12 @@ public class ResponsavelTecnico {
 		this.nome = nome;
 	}
 
-	public String getCPF() {
-		return CPF;
+	public int getCRM() {
+		return CRM;
 	}
 
-	public void setCPF(String cPF) {
-		CPF = cPF;
-	}
-
-	public String getRegistro_conselho() {
-		return registro_conselho;
-	}
-
-	public void setRegistro_conselho(String registro_conselho) {
-		this.registro_conselho = registro_conselho;
+	public void setCRM(int cRM) {
+		CRM = cRM;
 	}
 
 	@Override
@@ -75,7 +63,7 @@ public class ResponsavelTecnico {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ResponsavelTecnico other = (ResponsavelTecnico) obj;
+		MedicoResponsavel other = (MedicoResponsavel) obj;
 		return Objects.equals(id, other.id);
 	}
 

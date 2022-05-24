@@ -9,26 +9,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Esocial.entidades.ResponsavelTecnico;
-import com.Esocial.services.ResponsavelTecnicoService;
+import com.Esocial.entidades.ResponsavelLegal;
+import com.Esocial.services.ResponsavelLegalService;
 
 @RestController
-@RequestMapping(value = "/responsaveist")
-public class ResponsavelTecnicoResource {
+@RequestMapping(value = "/responsaveisl")
+public class ResponsavelLegalResource {
 
 	@Autowired
-	private ResponsavelTecnicoService service;
+	private ResponsavelLegalService service;
 
 	@GetMapping
-	public ResponseEntity<List<ResponsavelTecnico>> findAll() {
+	public ResponseEntity<List<ResponsavelLegal>> findAll() {
 
-		List<ResponsavelTecnico> list = service.findAll();
+		List<ResponsavelLegal> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ResponsavelTecnico> findById(@PathVariable Long id) {
-		ResponsavelTecnico obj = service.findById(id);
+	public ResponseEntity<ResponsavelLegal> findById(@PathVariable Long id) {
+		ResponsavelLegal obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }

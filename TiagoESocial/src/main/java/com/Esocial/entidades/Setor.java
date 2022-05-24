@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
+@Entity(name = "tb_Setor")
 public class Setor {
 
 	@Id
@@ -27,11 +27,10 @@ public class Setor {
 	public Setor() {
 	}
 
-	public Setor(Long id, String nome, List<Funcao> list) {
+	public Setor(Long id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.list = list;
 	}
 
 	public Long getId() {

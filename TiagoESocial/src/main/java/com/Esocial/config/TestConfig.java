@@ -20,11 +20,9 @@ public class TestConfig implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Empresa a = new Empresa(null, "emprol", "9999999999", "MEI", 1, "999999", "Consultoria", "Tiago", "99999999999",
-				"999999999");
-
-		Empresa b = new Empresa(null, "EPNSocial", "9999999999", "IE", 2, "888888", "Serviços", "Tiago", "99999999999",
-				"999999999");
+		Empresa a = new Empresa(null, "Emprol", "999999/00001-99", "MEI", 1, "1031-10", "Consultoria");
+		Empresa b = new Empresa(null, "Empresa2", "888888/00001-99", "IE", 3, "9991-10", "Construcao civil");
+		
 
 		empresaRepository.saveAll(Arrays.asList(a, b));
 	}

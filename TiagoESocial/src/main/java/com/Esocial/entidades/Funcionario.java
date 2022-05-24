@@ -14,10 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "tb_Funcionario")
 public class Funcionario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -58,19 +60,6 @@ public class Funcionario implements Serializable {
 		this.empresa = empresa;
 		this.funcao = funcao;
 		CLT = cLT;
-	}
-
-	public Funcionario(Long iD, String nome, String cPF, Date data_nascimento, String cLT, Funcao funcao,
-			Empresa empresa, List<Epi> list) {
-		super();
-		ID = iD;
-		this.nome = nome;
-		CPF = cPF;
-		this.data_nascimento = data_nascimento;
-		CLT = cLT;
-		this.funcao = funcao;
-		this.empresa = empresa;
-		this.list = list;
 	}
 
 	public List<Epi> getList() {

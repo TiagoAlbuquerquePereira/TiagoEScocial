@@ -6,35 +6,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_ResponsavelTecnico")
-public class ResponsavelTecnico {
+public class ResponsavelLegal {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Integer id;
 	private String nome;
 	private String CPF;
-	private String registro_conselho;
+	private String telefone;
 
-	public ResponsavelTecnico() {
+	public ResponsavelLegal() {
 	}
 
-	public ResponsavelTecnico(Long id, String nome, String cPF, String registro_conselho) {
+	public ResponsavelLegal(Integer id, String nome, String cPF, String telefone) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		CPF = cPF;
-		this.registro_conselho = registro_conselho;
+		this.telefone = telefone;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -54,12 +52,12 @@ public class ResponsavelTecnico {
 		CPF = cPF;
 	}
 
-	public String getRegistro_conselho() {
-		return registro_conselho;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setRegistro_conselho(String registro_conselho) {
-		this.registro_conselho = registro_conselho;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	@Override
@@ -75,7 +73,7 @@ public class ResponsavelTecnico {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ResponsavelTecnico other = (ResponsavelTecnico) obj;
+		ResponsavelLegal other = (ResponsavelLegal) obj;
 		return Objects.equals(id, other.id);
 	}
 

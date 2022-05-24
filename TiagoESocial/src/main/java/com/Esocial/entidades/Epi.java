@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tb_Epi")
 public class Epi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -18,6 +21,9 @@ public class Epi implements Serializable {
 	private String nome;
 	private int CA;
 
+	@OneToOne
+	private ResponsavelTecnico responsavelTecnico;
+
 	public Epi() {
 	}
 
@@ -26,6 +32,14 @@ public class Epi implements Serializable {
 		this.id = id;
 		this.nome = nome;
 		CA = cA;
+	}
+
+	public ResponsavelTecnico getResponsavelTecnico() {
+		return responsavelTecnico;
+	}
+
+	public void setResponsavelTecnico(ResponsavelTecnico responsavelTecnico) {
+		this.responsavelTecnico = responsavelTecnico;
 	}
 
 	public Long getId() {
